@@ -50,6 +50,7 @@ function SignUp() {
 					<Grid item xs={12}>
 						<TextField
 							name="password"
+							type="password"
 							id="outlined-basic"
 							label="Password"
 							variant="outlined"
