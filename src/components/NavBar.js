@@ -43,7 +43,7 @@ export default function NavBar() {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>
-						Photos
+						React Chat
 					</Typography>
 					{auth && (
 						<div>
