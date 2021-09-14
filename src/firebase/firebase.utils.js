@@ -22,6 +22,11 @@ class Firebase {
 	register(email, password) {
 		this.firebaseAuth.createUserWithEmailAndPassword(email, password);
 	}
+	useGoogleProvider() {
+		const googleProvider = new firebase.auth.GoogleAuthProvider();
+		googleProvider.setCustomParameters({ prompt: "select_account" });
+		this.firebaseAuth.signInWithPopup(googleProvider);
+	}
 }
 
 export default new Firebase();

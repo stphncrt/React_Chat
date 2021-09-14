@@ -9,7 +9,9 @@ const styles = makeStyles({
 		marginTop: "5rem",
 	},
 });
-
+const HandleGoogleButtonClick = () => {
+	Firebase.useGoogleProvider();
+};
 function SignUp() {
 	const signUpStyles = styles();
 	const formik = useFormik({
@@ -66,7 +68,7 @@ function SignUp() {
 						</Button>
 					</Grid>
 					<Grid item xs={12}>
-						<Button variant="contained" color="primary" fullWidth>
+						<Button variant="contained" color="primary" fullWidth onClick={HandleGoogleButtonClick}>
 							Sign Up With Google
 						</Button>
 					</Grid>
