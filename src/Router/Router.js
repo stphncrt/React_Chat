@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SignUp from "../pages/SignIn";
-import SignIn from "../pages/SignUp";
+import SignUp from "../pages/SignUp";
+import SignIn from "../pages/SignIn";
 
 import NavBar from "../components/NavBar";
 

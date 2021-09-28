@@ -27,6 +27,9 @@ class Firebase {
 		googleProvider.setCustomParameters({ prompt: "select_account" });
 		this.firebaseAuth.signInWithPopup(googleProvider);
 	}
+	signOut() {
+		this.firebaseAuth.signOut();
+	}
 }
 
 export default new Firebase();
