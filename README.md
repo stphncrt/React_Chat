@@ -79,3 +79,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     REACT_APP_STORAGE_BUCKET=
     REACT_APP_MESSAGE_SENDER_ID=
     REACT_APP_APP_ID=
+    REACT_APP_API_TOKEN=
