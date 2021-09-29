@@ -1,6 +1,8 @@
-import React from "react";
-import { Container, Grid, Button, TextField, Avatar, Typography } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Container, Grid, capitalize } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import MediaCard from "../components/MediaCard";
 
 const styleFunc = makeStyles((theme) => ({
 	wrapper: {
@@ -15,10 +17,39 @@ const styleFunc = makeStyles((theme) => ({
 }));
 
 function Main() {
+	const [userList, setUserList] = useState();
+	const { REACT_APP_BASE_URL, REACT_APP_API_TOKEN } = process.env;
+
+	const fetchData = async () => {
+		const response = await axios.get(`${REACT_APP_BASE_URL}user`, {
+			headers: {
+				"app-id": REACT_APP_API_TOKEN,
+			},
+		});
+		setUserList(response?.data?.data);
+		console.log(response?.data?.data);
+	};
+	useEffect(() => {
+		fetchData();
+	}, []);
+
 	const mainStyles = styleFunc();
 	return (
-		<Container className={mainStyles.wrapper} maxWidth="sm">
-			MAIN
+		<Container className={mainStyles.wrapper}>
+			<Grid container spacing={5}>
+				{userList?.map((user) => {
+					return (
+						<Grid key={user?.id} item xs={3}>
+							<MediaCard
+								id={user?.id}
+								userName={`${capitalize(user?.title)} ${user?.firstName} ${user.lastName} `}
+								userEmail={user?.email}
+								image={user?.picture}
+							/>
+						</Grid>
+					);
+				})}
+			</Grid>
 		</Container>
 	);
 }

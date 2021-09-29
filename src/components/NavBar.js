@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar() {
 	const { currentUser } = useContext(FirebaseAuthContext);
-	console.log(currentUser?.displayName);
-
 	const classes = useStyles();
 	const [auth, setAuth] = React.useState(true);
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,10 +38,10 @@ export default function NavBar() {
 		setAnchorEl(null);
 	};
 
-	const HandleSignOut = () =>
-		useCallback(() => {
-			Firebase.signOut();
-		}, []);
+	const HandleSignOut = () => {
+		Firebase.signOut();
+	};
+
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
