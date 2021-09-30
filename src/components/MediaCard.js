@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+
 export default function MediaCard({ id, image, userName, userEmail }) {
 	const history = useHistory();
 	return (
