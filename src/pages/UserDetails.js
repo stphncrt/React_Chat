@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../helper/FetchData";
 import UserDetailCard from "../components/UserDetailCard";
-import DateFormatting from "../helper/DateFormatting";
+import { makeStyles } from "@material-ui/core/styles";
 
+import { CircularProgress } from "@mui/material";
+const styleFunc = makeStyles((theme) => ({
+	circular: {
+		margin: "25rem",
+		marginLeft: "55rem",
+	},
+}));
 function UserDetails() {
 	const { id } = useParams();
 	const [userDetail, setUserDetail] = useState();
@@ -14,17 +21,24 @@ function UserDetails() {
 			.finally();
 	}, [id]);
 	console.log(userDetail);
+	const styles = styleFunc();
 	return (
-		<UserDetailCard
-			img={userDetail?.picture}
-			userInfo={`${userDetail?.title} ${userDetail?.firstName} ${userDetail?.lastName}`}
-			gender={userDetail?.gender}
-			// birthday={DateFormatting(userDetail?.dateOfBirth)}
-			city={userDetail?.location.city}
-			state={userDetail?.location.state}
-			street={userDetail?.location.street}
-			country={userDetail?.location.country}
-		/>
+		<>
+			{!userDetail ? (
+				<CircularProgress className={styles.circular} />
+			) : (
+				<UserDetailCard
+					img={userDetail.picture}
+					userInfo={`${userDetail.title} ${userDetail.firstName} ${userDetail.lastName}`}
+					gender={userDetail.gender}
+					birthday={userDetail.dateOfBirth}
+					city={userDetail.location.city}
+					state={userDetail.location.state}
+					street={userDetail.location.street}
+					country={userDetail.location.country}
+				/>
+			)}
+		</>
 	);
 }
 

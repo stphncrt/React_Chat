@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { FirebaseAuthContext } from "../context/AuthContext";
 import Firebase from "../firebase/firebase.utils";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -21,9 +22,18 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 		flexGrow: 1,
 	},
+	titleBox: {
+		marginLeft: "0.5rem",
+		"&:hover": {
+			background: "#005dff",
+			padding: "0.3rem",
+			borderRadius: "0.3rem",
+		},
+	},
 }));
 
 export default function NavBar() {
+	const history = useHistory();
 	const { currentUser } = useContext(FirebaseAuthContext);
 	const classes = useStyles();
 	const [auth, setAuth] = React.useState(true);
@@ -41,7 +51,12 @@ export default function NavBar() {
 	const HandleSignOut = () => {
 		Firebase.signOut();
 	};
-
+	const HandleSignInClick = () => {
+		history.push("/SignIn");
+	};
+	const HandleRegisterClick = () => {
+		history.push("/register");
+	};
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
@@ -51,6 +66,14 @@ export default function NavBar() {
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>
 						React Chat
+					</Typography>
+
+					<Typography onClick={HandleSignInClick} className={classes.titleBox} variant="h6">
+						Sign In
+					</Typography>
+
+					<Typography onClick={HandleRegisterClick} className={classes.titleBox} variant="h6">
+						Register
 					</Typography>
 					{auth && (
 						<div>
@@ -63,6 +86,7 @@ export default function NavBar() {
 								{currentUser?.displayName}
 								<AccountCircle />
 							</IconButton>
+
 							<Menu
 								id="menu-appbar"
 								anchorEl={anchorEl}

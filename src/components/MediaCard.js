@@ -8,17 +8,27 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
 
+const styleFunc = makeStyles((theme) => ({
+	container: {
+		height: "30rem",
+		"&:hover": {
+			boxShadow: "-1px -1px 15px 5px rgba(0,0,0,0.35)",
+		},
+	},
+}));
 export default function MediaCard({ id, image, userName, userEmail }) {
 	const history = useHistory();
+	const styles = styleFunc();
 	return (
-		<Card sx={{ maxWidth: 345 }}>
+		<Card className={styles.container} sx={{ maxWidth: 345 }}>
 			<CardActionArea
 				onClick={() => {
 					history.push(`/user/${id}`);
 				}}>
 				:
-				<CardMedia component="img" height="140" image={image} alt="green iguana" />
+				<CardMedia component="img" height="auto" image={image} alt="green iguana" />
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="div">
 						{userName}

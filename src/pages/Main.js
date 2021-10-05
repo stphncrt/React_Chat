@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, capitalize } from "@material-ui/core";
+import { Container, Grid, capitalize, CircularProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MediaCard from "../components/MediaCard";
@@ -13,6 +13,13 @@ const styleFunc = makeStyles((theme) => ({
 	avatar: {
 		margin: "1rem auto",
 		backgroundColor: theme.palette.secondary.main,
+	},
+	media: {
+		boxShadow: "2px 3px 9px rgb(0 0 0 / 20%)",
+	},
+	circle: {
+		alignSelf: "center",
+		justifySelf: "center",
 	},
 }));
 
@@ -34,13 +41,16 @@ function Main() {
 	}, []);
 
 	const mainStyles = styleFunc();
-	return (
+	return !userList ? (
+		<CircularProgress className={mainStyles.circle} />
+	) : (
 		<Container className={mainStyles.wrapper}>
 			<Grid container spacing={5}>
 				{userList?.map((user) => {
 					return (
 						<Grid key={user?.id} item xs={3}>
 							<MediaCard
+								className={mainStyles.media}
 								id={user?.id}
 								userName={`${capitalize(user?.title)} ${user?.firstName} ${user.lastName} `}
 								userEmail={user?.email}
