@@ -17,9 +17,9 @@ const styleFunc = makeStyles((theme) => ({
 	media: {
 		boxShadow: "2px 3px 9px rgb(0 0 0 / 20%)",
 	},
-	circle: {
-		alignSelf: "center",
-		justifySelf: "center",
+	circular: {
+		margin: "25rem",
+		marginLeft: "55rem",
 	},
 }));
 
@@ -42,17 +42,17 @@ function Main() {
 
 	const mainStyles = styleFunc();
 	return !userList ? (
-		<CircularProgress className={mainStyles.circle} />
+		<CircularProgress className={mainStyles.circular} />
 	) : (
 		<Container className={mainStyles.wrapper}>
 			<Grid container spacing={5}>
-				{userList?.map((user) => {
+				{userList.map((user) => {
 					return (
 						<Grid key={user?.id} item xs={3}>
 							<MediaCard
 								className={mainStyles.media}
 								id={user?.id}
-								userName={`${capitalize(user?.title)} ${user?.firstName} ${user.lastName} `}
+								userName={`${capitalize(user?.title)} ${user?.firstName} ${user?.lastName} `}
 								userEmail={user?.email}
 								image={user?.picture}
 							/>
