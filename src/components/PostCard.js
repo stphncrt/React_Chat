@@ -12,6 +12,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { makeStyles } from "@material-ui/core/styles";
 import { capitalizeFirstLetter } from "../helper/Functions";
+import moment from "moment";
 
 const styleFunc = makeStyles((theme) => ({
 	card: {
@@ -36,7 +37,7 @@ export default function PostCard({ owner, publishDate, text, likes, image, tags 
 					</IconButton>
 				}
 				title={`${owner.firstName} ${owner.lastName}`}
-				subheader={publishDate}
+				subheader={moment(publishDate).format("MMM Do YYYY")}
 			/>
 			<CardMedia component="img" height="194" image={image} alt="Post" />
 			<CardContent>

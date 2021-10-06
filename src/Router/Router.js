@@ -18,7 +18,7 @@ function AppRouter() {
 				<Route exact path="/register" component={SignUp} />
 				<Route exact path="/signIn" component={currentUser ? Main : SignIn} />
 				<Route exact path="/user/:id" component={currentUser ? UserDetails : SignIn} />
-				<Route exact path="/user/:id/post" component={Post} />
+				<Route exact path="/user/:id/post" component={currentUser ? Post : SignIn} />
 				<Route path="/" component={Main} />
 			</Switch>
 		</Router>

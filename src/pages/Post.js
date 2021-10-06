@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchData } from "../helper/FetchData";
 import { useParams } from "react-router-dom";
 import PostCard from "../components/PostCard";
-import { Grid, Container } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const styleFunc = makeStyles((theme) => ({
@@ -38,6 +38,7 @@ function Post() {
 			{postData.map((post) => {
 				return (
 					<PostCard
+						key={post.id}
 						owner={post.owner}
 						publishDate={post.publishDate}
 						text={post.text}

@@ -12,9 +12,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const styleFunc = makeStyles((theme) => ({
 	container: {
+		textAlign: "center",
 		height: "30rem",
+		margin: "3rem",
+		gap: "5rem",
 		"&:hover": {
-			boxShadow: "-1px -1px 15px 5px rgba(0,0,0,0.35)",
+			boxShadow: theme.shadows[14],
 		},
 	},
 }));
@@ -33,7 +36,6 @@ export default function MediaCard({ id, image, userName, userEmail }) {
 				onClick={() => {
 					history.push(`/user/${id}`);
 				}}>
-				:
 				<CardMedia component="img" height="auto" image={image} alt="green iguana" />
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="div">
