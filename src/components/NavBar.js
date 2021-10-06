@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@mui/icons-material/Home";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -57,10 +58,16 @@ export default function NavBar() {
 	const HandleRegisterClick = () => {
 		history.push("/register");
 	};
+	const HandleHomeIcon = () => {
+		history.push("/");
+	};
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar>
+					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+						<HomeIcon onClick={HandleHomeIcon} />
+					</IconButton>
 					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 						<MenuIcon />
 					</IconButton>

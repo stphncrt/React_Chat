@@ -24,6 +24,9 @@ export default function MediaCard({ id, image, userName, userEmail }) {
 	const HandlePostClick = () => {
 		history.push(`/user/${id}/post`);
 	};
+	const HandleProfileClick = () => {
+		history.push(`/user/${id}`);
+	};
 	return (
 		<Card className={styles.container} sx={{ maxWidth: 345 }}>
 			<CardActionArea
@@ -43,7 +46,9 @@ export default function MediaCard({ id, image, userName, userEmail }) {
 			</CardActionArea>
 
 			<CardActions>
-				<Button size="small">View Full Profile</Button>
+				<Button onClick={HandleProfileClick} size="small">
+					View Full Profile
+				</Button>
 				<Button onClick={HandlePostClick} size="small">
 					View User Posts
 				</Button>
