@@ -22,6 +22,13 @@ const styles = makeStyles((theme) => ({
 		margin: "5rem auto",
 		backgroundColor: theme.palette.secondary.main,
 	},
+	text: {
+		fontWeight: 700,
+		fontFamily:
+			"PlusJakartaSans-ExtraBold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+		color: "#0a1929",
+		padding: "1rem",
+	},
 }));
 
 function SignIn() {
@@ -43,7 +50,9 @@ function SignIn() {
 			<Avatar className={signInStyles.avatar}>
 				<LockOutlinedIcon />
 			</Avatar>
-			<Typography variant="h4">Sign In</Typography>
+			<Typography className={signInStyles.text} variant="h4">
+				Sign In
+			</Typography>
 			<Formik
 				initialValues={initialValues}
 				onSubmit={handleSignInSubmit}

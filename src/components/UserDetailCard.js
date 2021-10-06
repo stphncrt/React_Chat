@@ -6,8 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { DateFormatting, capitalizeFirstLetter } from "../helper/Functions";
-import { CircularProgress } from "@mui/material";
-
+import SendIcon from "@mui/icons-material/Send";
+import { useHistory } from "react-router-dom";
 // React Chat
 // {"id":"60d0fe4f5311236168a109cc","title":"ms","firstName":"Adina","lastName":"Barbosa","picture":"https://randomuser.me/api/portraits/med/women/28.jpg","gender":"female","email":"edina.barbosa@example.com","dateOfBirth":"1952-09-03T13:27:29.424Z","phone":"(64) 5796-9260","location":{"street":"8750, Rua Carlos Gomes","city":"Recife","state":"CearÃ¡","country":"Brazil","timezone":"+1:00"},"registerDate":"2021-06-21T21:02:07.719Z","updatedDate":"2021-06-21T21:02:07.719Z"}
 
@@ -24,9 +24,13 @@ const styleFunc = makeStyles((theme) => ({
 		width: "100%",
 		height: "100%",
 	},
+	postTypo: {
+		marginTop: "3rem",
+	},
 }));
 export default function UserDetailCard({
 	userInfo,
+	userName,
 	gender,
 	birthday,
 	street,
@@ -35,7 +39,11 @@ export default function UserDetailCard({
 	country,
 	img,
 }) {
+	const history = useHistory();
 	const styles = styleFunc();
+	function HandlePostClick() {
+		history.push("/post");
+	}
 	return (
 		<Card className={styles.wrapper}>
 			<Grid className={styles.backColor} container spacing={3}>
@@ -53,6 +61,13 @@ export default function UserDetailCard({
 						<Typography variant="body1" color="text.secondary">
 							{`Date of Birth: ${DateFormatting(birthday)}`}
 						</Typography>
+						<div className={styles.postTypo}>
+							<Typography onClick={HandlePostClick} sx={{ fontWeight: "bold" }}>
+								
+								<SendIcon />
+								{` Posts of ${userName}`}
+							</Typography>
+						</div>
 					</CardContent>
 				</Grid>
 				<Grid item xs={12} md={4}>

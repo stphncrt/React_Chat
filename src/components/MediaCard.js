@@ -21,6 +21,9 @@ const styleFunc = makeStyles((theme) => ({
 export default function MediaCard({ id, image, userName, userEmail }) {
 	const history = useHistory();
 	const styles = styleFunc();
+	const HandlePostClick = () => {
+		history.push(`/user/${id}/post`);
+	};
 	return (
 		<Card className={styles.container} sx={{ maxWidth: 345 }}>
 			<CardActionArea
@@ -41,7 +44,9 @@ export default function MediaCard({ id, image, userName, userEmail }) {
 
 			<CardActions>
 				<Button size="small">View Full Profile</Button>
-				<Button size="small">View User Posts</Button>
+				<Button onClick={HandlePostClick} size="small">
+					View User Posts
+				</Button>
 			</CardActions>
 		</Card>
 	);

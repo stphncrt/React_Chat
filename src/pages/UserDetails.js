@@ -30,6 +30,7 @@ function UserDetails() {
 				<UserDetailCard
 					img={userDetail.picture}
 					userInfo={`${userDetail.title} ${userDetail.firstName} ${userDetail.lastName}`}
+					userName={`${userDetail.firstName}`}
 					gender={userDetail.gender}
 					birthday={userDetail.dateOfBirth}
 					city={userDetail.location.city}

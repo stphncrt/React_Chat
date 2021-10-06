@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	titleBox: {
 		marginLeft: "0.5rem",
+		padding: "0.3rem",
 		"&:hover": {
 			background: "#005dff",
-			padding: "0.3rem",
+			// padding: "0.3rem",
 			borderRadius: "0.3rem",
 		},
 	},
@@ -36,7 +37,6 @@ export default function NavBar() {
 	const history = useHistory();
 	const { currentUser } = useContext(FirebaseAuthContext);
 	const classes = useStyles();
-	const [auth, setAuth] = React.useState(true);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 
@@ -75,7 +75,7 @@ export default function NavBar() {
 					<Typography onClick={HandleRegisterClick} className={classes.titleBox} variant="h6">
 						Register
 					</Typography>
-					{auth && (
+					{currentUser ? (
 						<div>
 							<IconButton
 								aria-label="account of current user"
@@ -104,6 +104,35 @@ export default function NavBar() {
 								<MenuItem onClick={handleClose}>Profile</MenuItem>
 								<MenuItem onClick={handleClose}>My account</MenuItem>
 								<MenuItem onClick={HandleSignOut}>Sign Out</MenuItem>
+							</Menu>
+						</div>
+					) : (
+						<div>
+							<IconButton
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleMenu}
+								color="inherit">
+								<AccountCircle />
+							</IconButton>
+
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: "top",
+									horizontal: "right",
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: "top",
+									horizontal: "right",
+								}}
+								open={open}
+								onClose={handleClose}>
+								<MenuItem onClick={handleClose}>Profile</MenuItem>
+								<MenuItem onClick={handleClose}>My account</MenuItem>
 							</Menu>
 						</div>
 					)}

@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, TextField, Grid, Container } from "@material-ui/core";
+import { Button, TextField, Grid, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import Firebase from "../firebase/firebase.utils";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 const signUpValidationSchema = Yup.object().shape({
 	displayName: Yup.string().required("Required"),
@@ -15,16 +16,24 @@ const signUpValidationSchema = Yup.object().shape({
 			"Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character",
 		),
 });
-
 const styles = makeStyles({
 	wrapper: {
 		marginTop: "5rem",
+		textAlign: "center",
+	},
+	text: {
+		fontWeight: 700,
+		fontFamily:
+			"PlusJakartaSans-ExtraBold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+		color: "#0a1929",
+		padding: "1rem",
 	},
 });
 const HandleGoogleButtonClick = () => {
 	Firebase.useGoogleProvider();
 };
 function SignUp() {
+	const history = useHistory();
 	const signUpStyles = styles();
 	const formik = useFormik({
 		initialValues: {
@@ -36,10 +45,15 @@ function SignUp() {
 		validationSchema: signUpValidationSchema,
 		onSubmit: (values) => {
 			Firebase.register(values.displayName, values.email, values.password);
+			history.push("/signIn");
 		},
 	});
 	return (
 		<Container className={signUpStyles.wrapper} maxWidth="sm">
+			<Typography className={signUpStyles.text} variant="h4">
+				Sign Up
+			</Typography>
+
 			<form onSubmit={formik.handleSubmit}>
 				<Grid container spacing={3}>
 					<Grid item xs={12}>
