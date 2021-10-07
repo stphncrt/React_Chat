@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { CircularProgress } from "@mui/material";
 
 const styleFunc = makeStyles((theme) => ({
 	wrapper: {
@@ -14,11 +15,10 @@ const styleFunc = makeStyles((theme) => ({
 		width: "100%",
 		justifyContent: "center",
 	},
-	postCard: {
-		height: "40rem",
-		margin: "0.3rem",
-		width: "23%",
-		border: "1px solid",
+	circular: {
+		position: "absolute",
+		top: "50%",
+		left: "50%",
 	},
 }));
 
@@ -36,7 +36,9 @@ function Post() {
 	return (
 		<Grid className={styles.wrapper}>
 			{postData.map((post) => {
-				return (
+				return !postData ? (
+					<CircularProgress className={styles.circular} />
+				) : (
 					<PostCard
 						key={post.id}
 						owner={post.owner}

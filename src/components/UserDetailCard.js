@@ -10,29 +10,31 @@ import SendIcon from "@mui/icons-material/Send";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-// React Chat
-// {"id":"60d0fe4f5311236168a109cc","title":"ms","firstName":"Adina","lastName":"Barbosa","picture":"https://randomuser.me/api/portraits/med/women/28.jpg","gender":"female","email":"edina.barbosa@example.com","dateOfBirth":"1952-09-03T13:27:29.424Z","phone":"(64) 5796-9260","location":{"street":"8750, Rua Carlos Gomes","city":"Recife","state":"CearÃ¡","country":"Brazil","timezone":"+1:00"},"registerDate":"2021-06-21T21:02:07.719Z","updatedDate":"2021-06-21T21:02:07.719Z"}
 
 const styleFunc = makeStyles((theme) => ({
 	wrapper: {
-		width: 1000,
-		margin: "15rem",
-		marginLeft: "25rem",
+		border: "3px solid",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		zIndex: "2",
+		width: "50%",
 	},
-	backColor: {
-		backgroundColor: theme.palette.grey[200],
-	},
-	img: {
-		width: "100%",
-		height: "100%",
-	},
+
 	postTypo: {
 		marginTop: "3rem",
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		gap: "2px",
+		"&:hover": {
+			transform: "scale(1.03)",
+		},
 	},
 }));
 export default function UserDetailCard({
 	userInfo,
-	userName,
 	gender,
 	birthday,
 	street,
@@ -55,41 +57,38 @@ export default function UserDetailCard({
 				</Grid>
 				<Grid item xs={12} md={4} spacing={3}>
 					<CardContent>
-						<Typography gutterBottom variant="h4" component="div">
+						<Typography mb={1} gutterBottom variant="h4" component="div">
 							{capitalizeFirstLetter(userInfo)}
 						</Typography>
-						<Typography variant="body1" color="text.secondary">
-							{`Gender: ${gender}`}
+						<Typography variant="body1" color="textprimary">
+							{`Gender: ${capitalizeFirstLetter(gender)}`}
 						</Typography>
-						<Typography variant="body1" color="text.secondary">
+						<Typography variant="body1" color="textprimary">
 							{`Date of Birth: ${moment(birthday).format("DD MM YYYY")}`}
 						</Typography>
-						<div className={styles.postTypo}>
-							<Typography onClick={HandlePostClick} sx={{ fontWeight: "bold" }}>
-								Posts <SendIcon />
-							</Typography>
+						<div onClick={HandlePostClick} className={styles.postTypo}>
+							<Typography sx={{ fontWeight: "bold" }}>Posts</Typography>
+							<SendIcon />
 						</div>
 					</CardContent>
 				</Grid>
 				<Grid item xs={12} md={4}>
 					<CardContent>
-						<Typography gutterBottom variant="h4" component="div">
+						<Typography mb={1} gutterBottom variant="h4" component="div">
 							Address
 						</Typography>
-						<Typography variant="body2" color="text.secondary">
-							{state}
-						</Typography>
-						<Typography variant="body2" color="text.secondary">
+
+						<Typography mb={1} variant="body1">
 							{`State: ${state}`}
 						</Typography>
-						<Typography variant="body2" color="text.secondary">
-							{`Street:${street}`}
+						<Typography mb={1} variant="body1" color="text.primary">
+							{`Street: ${street}`}
 						</Typography>
-						<Typography variant="body2" color="text.secondary">
-							{`City:${city}`}
+						<Typography mb={1} variant="body1" color="textprimary">
+							{`City: ${city}`}
 						</Typography>
-						<Typography variant="body2" color="text.secondary">
-							{`Country:${country}`}
+						<Typography mb={1} variant="body1" color="textprimary">
+							{`Country: ${country}`}
 						</Typography>
 					</CardContent>
 				</Grid>

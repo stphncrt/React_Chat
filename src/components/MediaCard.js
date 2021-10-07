@@ -13,7 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 const styleFunc = makeStyles((theme) => ({
 	container: {
 		textAlign: "center",
-		height: "30rem",
+		height: "27rem",
+		width: "18rem",
 		margin: "3rem",
 		gap: "5rem",
 		"&:hover": {

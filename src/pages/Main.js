@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, capitalize, CircularProgress } from "@material-ui/core";
+import { Grid, capitalize, CircularProgress, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MediaCard from "../components/MediaCard";
@@ -17,8 +17,9 @@ const styleFunc = makeStyles((theme) => ({
 	},
 
 	circular: {
-		margin: "25rem",
-		marginLeft: "55rem",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
 	},
 }));
 
@@ -33,7 +34,6 @@ function Main() {
 			},
 		});
 		setUserList(response?.data?.data);
-		console.log(response?.data?.data);
 	};
 	useEffect(() => {
 		fetchData();
@@ -44,20 +44,22 @@ function Main() {
 		<CircularProgress className={mainStyles.circular} />
 	) : (
 		<div className={mainStyles.container}>
-			<Grid container>
-				{userList.map((user) => {
-					return (
-						<Grid key={user?.id} item xs={3}>
-							<MediaCard
-								id={user?.id}
-								userName={`${capitalize(user?.title)} ${user?.firstName} ${user?.lastName} `}
-								userEmail={user?.email}
-								image={user?.picture}
-							/>
-						</Grid>
-					);
-				})}
-			</Grid>
+			<Container>
+				<Grid container>
+					{userList.map((user) => {
+						return (
+							<Grid key={user?.id} item xs={3}>
+								<MediaCard
+									id={user?.id}
+									userName={`${capitalize(user?.title)} ${user?.firstName} ${user?.lastName} `}
+									userEmail={user?.email}
+									image={user?.picture}
+								/>
+							</Grid>
+						);
+					})}
+				</Grid>
+			</Container>
 		</div>
 	);
 }
